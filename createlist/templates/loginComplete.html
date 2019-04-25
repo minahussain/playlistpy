@@ -1,0 +1,18 @@
+{% include 'base.html' %}
+
+<script>
+
+	function parseHash(url) {
+		var re = /(?<=access_token\=)(.*)(?=\&token_type)/;
+		return re.match(re)
+	}
+
+	$('document').ready(function(){
+	        var spotifyAccessToken = parseHash(String(window.location.hash));
+	        //you must clear localStorage for main page listener to trigger on all(including duplicate) entries
+	        localStorage.clear();
+	        localStorage.setItem('accessToken', spotifyAccessToken);
+	        window.close();
+	});
+
+</script>

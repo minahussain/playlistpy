@@ -1,0 +1,33 @@
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'createlist/style.css' %}">
+<div class="sidenav">
+  <a href="#">Playlist 1</a>
+  <a href="#">Playlist 2</a>
+  <a href="#">Playlist 3</a>
+  <a href="#">Playlist 4</a>
+</div>
+
+<div class="main">
+	<div class="container">
+  		<div class="jumbotron">
+
+        <h1>Welcome user {{ user.get_username }}!</h1>
+        <p><a href="{% url 'logout' %}" class="header-link">Log out</a></p>
+        <br>
+
+    {% if all_items %}
+		<table class="table table-bordered">
+		{% for things in all_items %}
+			<tr>
+				<td>{{ things.origin_list_name_text }}</td>
+				<td><a href="{% url 'delete' things.id %}">Delete</a></td>
+			</tr>
+		{% endfor %}
+		</table>
+	</div>
+</div></div>
+	{% endif %}
+
+{% endblock %}
